@@ -14,6 +14,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
 
     private List<Note> notes = new ArrayList<>();
 
+    private OnItemClickListener listener;
+
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -56,10 +58,30 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewPriority = itemView.findViewById(R.id.text_view_priority);
 
+            //for update
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(notes.get(position));
+                    }
+
+                }
+            });
+
         }
     }
 
     //for update
+    public interface OnItemClickListener{
+        void onItemClick(Note note);
+    }
+
+    //for update
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
 
 

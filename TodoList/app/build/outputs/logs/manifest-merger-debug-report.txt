@@ -82,12 +82,12 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\srija\.gra
 		ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:11:9-40
-activity#com.example.todolist.AddNoteActivity
+activity#com.example.todolist.AddEditNoteActivity
 ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:12:9-13:67
 	android:parentActivityName
 		ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:13:13-55
 	android:name
-		ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:12:19-50
+		ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:12:19-54
 activity#com.example.todolist.MainActivity
 ADDED from D:\all files\British\application project\android\TodoList\TodoList\app\src\main\AndroidManifest.xml:14:9-21:20
 	android:launchMode
