@@ -1003,6 +1003,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_add
 drawable ic_close
+drawable ic_export
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
@@ -1099,6 +1100,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id export_note
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1210,7 +1212,6 @@ id textSpacerNoTitle
 id textStart
 id text_input_password_toggle
 id text_view_description
-id text_view_priority
 id text_view_title
 id textinput_counter
 id textinput_error

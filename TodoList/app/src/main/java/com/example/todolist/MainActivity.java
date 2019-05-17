@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(AddEditNoteActivity.EXTRA_ID, note.getId());
                 intent.putExtra(AddEditNoteActivity.EXTRA_TITLE, note.getTitle());
                 intent.putExtra(AddEditNoteActivity.EXTRA_DESCRIPTION, note.getDescribtion());
-                intent.putExtra(AddEditNoteActivity.EXTRA_PRIORITY, note.getPriority());
                 startActivityForResult(intent, EDIT_NOTE_REQUEST);
             }
         });
@@ -96,9 +95,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
             String title = data.getStringExtra(AddEditNoteActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
-            int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
 
-            Note note = new Note(title, description, priority);
+            Note note = new Note(title, description);
             noteViewModell.insert(note);
             Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show();
         }
@@ -112,9 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
             String title = data.getStringExtra(AddEditNoteActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
-            int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
 
-            Note note = new Note(title,description,priority);
+            Note note = new Note(title,description);
             note.setId(id);
             noteViewModell.update(note);
 
