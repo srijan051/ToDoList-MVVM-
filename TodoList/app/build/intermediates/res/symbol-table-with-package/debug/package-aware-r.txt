@@ -1212,6 +1212,7 @@ id textSpacerNoTitle
 id textStart
 id text_input_password_toggle
 id text_view_description
+id text_view_priority
 id text_view_title
 id textinput_counter
 id textinput_error

@@ -23,11 +23,12 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_TITLE = "com.example.todolist.EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "com.example.todolist.EXTRA_DESCRIPTION";
+    public static final String EXTRA_PRIORITY = "com.example.todolist.EXTRA_PRIORITY";
     public static final String EXTRA_ID = "com.example.todolist.EXTRA_ID";
 
     private EditText editTextTitle;
     private EditText editTextDiscription;
-
+    private NumberPicker numberPickerPriority;
 
     private static final int WRITE_EXTERNAL_STORAGE_CODE = 1;
 
@@ -38,6 +39,10 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
         editTextTitle = findViewById(R.id.edit_text_title);
         editTextDiscription = findViewById(R.id.edit_text_description);
+        numberPickerPriority = findViewById(R.id.number_picker_priority);
+
+        numberPickerPriority.setMinValue(1);
+        numberPickerPriority.setMaxValue(10);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 
@@ -47,6 +52,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
             setTitle("Edit Note");
             editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
             editTextDiscription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            numberPickerPriority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
         }
         else {
             setTitle("Add Note");
@@ -57,6 +63,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
     private void saveNote(){
         String title = editTextTitle.getText().toString();
         String description = editTextDiscription.getText().toString();
+        int priority = numberPickerPriority.getValue();
 
         if (title.trim().isEmpty() || description.trim().isEmpty()){
             Toast.makeText(AddEditNoteActivity.this, "Please the title and description", Toast.LENGTH_SHORT).show();
@@ -66,6 +73,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra(EXTRA_TITLE, title);
         data.putExtra(EXTRA_DESCRIPTION, description);
+        data.putExtra(EXTRA_PRIORITY, priority);
 
         //for update
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
@@ -74,7 +82,9 @@ public class AddEditNoteActivity extends AppCompatActivity {
         }
         setResult(RESULT_OK, data);
         finish();
+
     }
+
 
     private void exportNote() throws IOException {
 
@@ -91,7 +101,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
                     requestPermissions(permissions,WRITE_EXTERNAL_STORAGE_CODE);
                 }
                 else {
-                    Toast.makeText(this, "Savetxtfile called", Toast.LENGTH_SHORT).show();
                     Savetotxtfile(exportTitle, exportDescription);
 
                 }
@@ -136,7 +145,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
                 try {
                     exportNote();
                 } catch (IOException e) {
-                                                    e.printStackTrace();
+                    e.printStackTrace();
                 }
                 return true;
             default:

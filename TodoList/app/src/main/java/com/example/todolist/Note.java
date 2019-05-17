@@ -14,12 +14,12 @@ public class Note {
 
     private String describtion;
 
+    private int priority;
 
-
-    public Note(String title, String describtion) {
+    public Note(String title, String describtion, int priority) {
         this.title = title;
         this.describtion = describtion;
-
+        this.priority = priority;
     }
 
     public void setId(int id) {
@@ -38,4 +38,7 @@ public class Note {
         return describtion;
     }
 
+    public int getPriority() {
+        return priority;
+    }
 }

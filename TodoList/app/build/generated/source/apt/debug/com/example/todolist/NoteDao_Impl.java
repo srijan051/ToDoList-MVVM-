@@ -35,7 +35,7 @@ public class NoteDao_Impl implements NoteDao {
     this.__insertionAdapterOfNote = new EntityInsertionAdapter<Note>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `note_table`(`id`,`title`,`describtion`) VALUES (nullif(?, 0),?,?)";
+        return "INSERT OR ABORT INTO `note_table`(`id`,`title`,`describtion`,`priority`) VALUES (nullif(?, 0),?,?,?)";
       }
 
       @Override
@@ -51,6 +51,7 @@ public class NoteDao_Impl implements NoteDao {
         } else {
           stmt.bindString(3, value.getDescribtion());
         }
+        stmt.bindLong(4, value.getPriority());
       }
     };
     this.__deletionAdapterOfNote = new EntityDeletionOrUpdateAdapter<Note>(__db) {
@@ -67,7 +68,7 @@ public class NoteDao_Impl implements NoteDao {
     this.__updateAdapterOfNote = new EntityDeletionOrUpdateAdapter<Note>(__db) {
       @Override
       public String createQuery() {
-        return "UPDATE OR ABORT `note_table` SET `id` = ?,`title` = ?,`describtion` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `note_table` SET `id` = ?,`title` = ?,`describtion` = ?,`priority` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -83,7 +84,8 @@ public class NoteDao_Impl implements NoteDao {
         } else {
           stmt.bindString(3, value.getDescribtion());
         }
-        stmt.bindLong(4, value.getId());
+        stmt.bindLong(4, value.getPriority());
+        stmt.bindLong(5, value.getId());
       }
     };
     this.__preparedStmtOfDeleteAllNotes = new SharedSQLiteStatement(__db) {
@@ -143,7 +145,7 @@ public class NoteDao_Impl implements NoteDao {
 
   @Override
   public LiveData<List<Note>> getAllNotes() {
-    final String _sql = "SELECT * FROM note_table ORDER BY id DESC";
+    final String _sql = "SELECT * FROM note_table ORDER BY priority DESC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return new ComputableLiveData<List<Note>>() {
       private Observer _observer;
@@ -164,6 +166,7 @@ public class NoteDao_Impl implements NoteDao {
           final int _cursorIndexOfId = _cursor.getColumnIndexOrThrow("id");
           final int _cursorIndexOfTitle = _cursor.getColumnIndexOrThrow("title");
           final int _cursorIndexOfDescribtion = _cursor.getColumnIndexOrThrow("describtion");
+          final int _cursorIndexOfPriority = _cursor.getColumnIndexOrThrow("priority");
           final List<Note> _result = new ArrayList<Note>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final Note _item;
@@ -171,7 +174,9 @@ public class NoteDao_Impl implements NoteDao {
             _tmpTitle = _cursor.getString(_cursorIndexOfTitle);
             final String _tmpDescribtion;
             _tmpDescribtion = _cursor.getString(_cursorIndexOfDescribtion);
-            _item = new Note(_tmpTitle,_tmpDescribtion);
+            final int _tmpPriority;
+            _tmpPriority = _cursor.getInt(_cursorIndexOfPriority);
+            _item = new Note(_tmpTitle,_tmpDescribtion,_tmpPriority);
             final int _tmpId;
             _tmpId = _cursor.getInt(_cursorIndexOfId);
             _item.setId(_tmpId);
