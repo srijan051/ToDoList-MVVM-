@@ -1,4 +1,0 @@
-#Sat May 18 03:50:05 NPT 2019
-base.0=D\:\\all files\\British\\application project\\android\\TodoList\\TodoList\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
-path.0=classes.dex
-renamed.0=classes.dex

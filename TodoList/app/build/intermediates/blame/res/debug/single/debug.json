@@ -188,6 +188,10 @@
         "source": "C:\\Users\\srija\\.gradle\\caches\\transforms-2\\files-2.1\\ac101384991e4e1796049966a603bf62\\res\\color\\abc_secondary_text_material_dark.xml"
     },
     {
+        "merged": "D:\\all files\\British\\application project\\android\\TodoList\\TodoList\\app\\build\\intermediates\\res\\merged\\debug\\layout_use_switch.xml.flat",
+        "source": "D:\\all files\\British\\application project\\android\\TodoList\\TodoList\\app\\src\\main\\res\\layout\\use_switch.xml"
+    },
+    {
         "merged": "D:\\all files\\British\\application project\\android\\TodoList\\TodoList\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\srija\\.gradle\\caches\\transforms-2\\files-2.1\\ac101384991e4e1796049966a603bf62\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },

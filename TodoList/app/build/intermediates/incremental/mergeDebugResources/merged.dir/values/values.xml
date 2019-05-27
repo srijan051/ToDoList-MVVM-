@@ -190,8 +190,8 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="colorAccent">#000</color>
-    <color name="colorPrimary">#000</color>
+    <color name="colorAccent">#313131</color>
+    <color name="colorPrimary">#1D1D1D</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_default_color_primary">#3F51B5</color>
@@ -214,6 +214,9 @@
     <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="main_background_color">#181818</color>
+    <color name="main_description">#D1D0D0</color>
+    <color name="main_priority">#A06101</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -254,6 +257,8 @@
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+    <color name="switchoff">#3F51B5</color>
+    <color name="switchon">#673AB7</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
     <color name="white">#FFF</color>
@@ -2921,6 +2926,11 @@
   </style>
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
         <item name="statusBarBackground">#000000</item>
+    </style>
+    <style name="mySwitch">
+        <item name="android:colorControlActivated">@color/switchoff</item>
+        <item name="android:colorControlHighlight">@color/switchon</item>
+        <item name="android:colorControlNormal">@color/switchon</item>
     </style>
     <declare-styleable name="ActionBar">
         <!-- The type of navigation to use. -->

@@ -194,4 +194,56 @@ public class NoteDao_Impl implements NoteDao {
       }
     }.getLiveData();
   }
+
+  @Override
+  public LiveData<List<Note>> getAllNotesByTitle() {
+    final String _sql = "SELECT * FROM note_table ORDER BY title ASC";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    return new ComputableLiveData<List<Note>>() {
+      private Observer _observer;
+
+      @Override
+      protected List<Note> compute() {
+        if (_observer == null) {
+          _observer = new Observer("note_table") {
+            @Override
+            public void onInvalidated(@NonNull Set<String> tables) {
+              invalidate();
+            }
+          };
+          __db.getInvalidationTracker().addWeakObserver(_observer);
+        }
+        final Cursor _cursor = __db.query(_statement);
+        try {
+          final int _cursorIndexOfId = _cursor.getColumnIndexOrThrow("id");
+          final int _cursorIndexOfTitle = _cursor.getColumnIndexOrThrow("title");
+          final int _cursorIndexOfDescribtion = _cursor.getColumnIndexOrThrow("describtion");
+          final int _cursorIndexOfPriority = _cursor.getColumnIndexOrThrow("priority");
+          final List<Note> _result = new ArrayList<Note>(_cursor.getCount());
+          while(_cursor.moveToNext()) {
+            final Note _item;
+            final String _tmpTitle;
+            _tmpTitle = _cursor.getString(_cursorIndexOfTitle);
+            final String _tmpDescribtion;
+            _tmpDescribtion = _cursor.getString(_cursorIndexOfDescribtion);
+            final int _tmpPriority;
+            _tmpPriority = _cursor.getInt(_cursorIndexOfPriority);
+            _item = new Note(_tmpTitle,_tmpDescribtion,_tmpPriority);
+            final int _tmpId;
+            _tmpId = _cursor.getInt(_cursorIndexOfId);
+            _item.setId(_tmpId);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    }.getLiveData();
+  }
 }

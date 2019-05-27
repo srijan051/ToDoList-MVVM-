@@ -6,8 +6,13 @@
         -->
 <resources>
     <color name="white">#FFF</color>
-    <color name="colorPrimary">#000</color>
+    <color name="colorPrimary">#1D1D1D</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#000</color>
+    <color name="colorAccent">#313131</color>
+    <color name="main_background_color">#181818</color>
+    <color name="main_priority">#A06101</color>
+    <color name="main_description">#D1D0D0</color>
+    <color name="switchoff">#3F51B5</color>
+    <color name="switchon">#673AB7</color>
 
 </resources>

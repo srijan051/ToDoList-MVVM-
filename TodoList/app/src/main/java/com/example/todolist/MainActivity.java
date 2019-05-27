@@ -10,11 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int EDIT_NOTE_REQUEST = 2;
 
     private NoteViewModell noteViewModell;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -41,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        RecyclerView recyclerView = findViewById(R.id.recycle_view);
+        //RecyclerView
+        recyclerView = findViewById(R.id.recycle_view);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -131,7 +137,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
-        return true;
+
+        MenuItem itemSwitch = menu.findItem(R.id.mySwitch);
+        itemSwitch.setActionView(R.layout.use_switch); //use layout and switch as menu item
+
+        final Switch sw = menu.findItem(R.id.mySwitch).getActionView().findViewById(R.id.action_switch);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    Toast.makeText(MainActivity.this, "Grid View Activated", Toast.LENGTH_SHORT).show();
+
+                    StaggeredGridLayoutManager mStaggeredVerticalLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                    recyclerView.setLayoutManager(mStaggeredVerticalLayoutManager);
+
+                }
+                else if (!isChecked){
+                    Toast.makeText(MainActivity.this, "Linear View Activated", Toast.LENGTH_SHORT).show();
+                    recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+                }
+            }
+        });
+
+        //return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

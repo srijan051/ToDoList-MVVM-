@@ -36,6 +36,9 @@ public class NoteRepository {
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
+    public LiveData<List<Note>> getAllNotesByTitle() {
+        return allNotes;
+    }
 
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void>{
 

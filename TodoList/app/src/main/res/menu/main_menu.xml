@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/mySwitch"
+        android:title=""
+        app:showAsAction="always"
+        app:actionLayout="@layout/use_switch"
+        />
+    <item
         android:id="@+id/delete_all_notes"
         android:title="Delete all notes"
         app:showAsAction="never" />
